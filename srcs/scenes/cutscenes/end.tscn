@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cpd4kxtsop8jr"]
 
 [ext_resource type="Script" uid="uid://dg2p8wnlnl" path="res://srcs/scenes/cutscenes/start.gd" id="1_1m7qj"]
-[ext_resource type="PackedScene" uid="uid://ba0jlwmm7t46y" path="res://srcs/scenes/levels/playables/tutorial.tscn" id="2_lfm0j"]
 [ext_resource type="FontFile" uid="uid://qrthmjsayps1" path="res://srcs/assets/Minecraftia-Regular.ttf" id="3_3nhvy"]
 
 [sub_resource type="Animation" id="Animation_l1cd3"]
@@ -45,7 +44,7 @@ _data = {
 
 [node name="Start" type="Node2D" unique_id=1604360200]
 script = ExtResource("1_1m7qj")
-next_scene = ExtResource("2_lfm0j")
+next_scene = "uid://ba0jlwmm7t46y"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1896425977]
 

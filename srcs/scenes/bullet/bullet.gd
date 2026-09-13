@@ -14,14 +14,12 @@ func _physics_process(delta: float) -> void:
 	if exploded:
 		return
 
-	# move_and_collide sweeps the bullet shape and returns a collision object if it hits anything
 	var collision := move_and_collide(vec.normalized() * speed * delta)
 
 	if collision:
 		var collider := collision.get_collider()
 		
 		if collider is Bullet or collider is Player:
-			# Pass through ignored objects by adding them to collision exceptions
 			add_collision_exception_with(collider)
 		else:
 			explode(collision.get_position())
