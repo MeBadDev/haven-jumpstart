@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://dq0ddveov5xxs"]
+
+[ext_resource type="FontFile" uid="uid://qrthmjsayps1" path="res://srcs/assets/Minecraftia-Regular.ttf" id="1_2uyxv"]
+[ext_resource type="Script" uid="uid://dg2p8wnlnl" path="res://srcs/scenes/cutscenes/start.gd" id="1_dkaro"]
+[ext_resource type="PackedScene" uid="uid://ba0jlwmm7t46y" path="res://srcs/scenes/levels/playables/tutorial.tscn" id="2_dtg0r"]
+
+[sub_resource type="Animation" id="Animation_l1cd3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["fun fact (totally not made up by me):
+Dinosours can't jump because their legs are too short
+
+
+So what if...
+
+
+We gave it a gun?"]
+}
+
+[sub_resource type="Animation" id="Animation_dtg0r"]
+resource_name = "start"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": ["", "fun fact (totally not made up by me):
+Dinosours can't jump because their legs are too short
+
+
+So what if...
+
+
+We gave it a gun?"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l1cd3"]
+_data = {
+&"RESET": SubResource("Animation_l1cd3"),
+&"start": SubResource("Animation_dtg0r")
+}
+
+[node name="Start" type="Node2D" unique_id=1604360200]
+script = ExtResource("1_dkaro")
+next_scene = ExtResource("2_dtg0r")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1896425977]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=550625085]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=1101421624]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -263.0
+offset_top = -122.5
+offset_right = 263.0
+offset_bottom = 122.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_2uyxv")
+text = "fun fact (totally not made up by me):
+Dinosours can't jump because their legs are too short
+
+
+So what if...
+
+
+We gave it a gun?"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=790231101]
+libraries/ = SubResource("AnimationLibrary_l1cd3")
+autoplay = &"start"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

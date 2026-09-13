@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://dodjggq3h68h0"]
+
+[ext_resource type="Script" uid="uid://b4yl50dv7fckw" path="res://srcs/scenes/goal/goal.gd" id="1_37se3"]
+[ext_resource type="Texture2D" uid="uid://cvxk5l71aiopw" path="res://srcs/assets/End (Idle).png" id="1_mhc8g"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mhc8g"]
+radius = 41.109608
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ijkku"]
+
+[sub_resource type="Animation" id="Animation_37se3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_y077y"]
+resource_name = "fade"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ijkku"]
+_data = {
+&"RESET": SubResource("Animation_37se3"),
+&"fade": SubResource("Animation_y077y")
+}
+
+[node name="Goal" type="Node2D" unique_id=477931593]
+texture_filter = 1
+script = ExtResource("1_37se3")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=539552343]
+texture = ExtResource("1_mhc8g")
+
+[node name="GoalDetecrt" type="Area2D" parent="." unique_id=105429724]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GoalDetecrt" unique_id=1549879250]
+shape = SubResource("CircleShape2D_mhc8g")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1698355913]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1985178949]
+material = SubResource("ShaderMaterial_ijkku")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=987839076]
+libraries/ = SubResource("AnimationLibrary_ijkku")
+
+[connection signal="body_entered" from="GoalDetecrt" to="." method="_on_goal_detecrt_body_entered"]

@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://hg5gp25vg3bn"]
+
+[ext_resource type="Script" uid="uid://cdxahgc1dfimc" path="res://srcs/scenes/bricks/bricks.gd" id="1_dy704"]
+[ext_resource type="Texture2D" uid="uid://dd4i3pns4ijbb" path="res://srcs/assets/Terrain/Terrain (16x16).png" id="2_cnp8m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sxecg"]
+size = Vector2(48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ayu50"]
+atlas = ExtResource("2_cnp8m")
+region = Rect2(272, 64, 48, 48)
+
+[node name="StaticBody2D" type="StaticBody2D" unique_id=596617463]
+texture_filter = 1
+script = ExtResource("1_dy704")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1827249123]
+shape = SubResource("RectangleShape2D_sxecg")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1840405338]
+texture = SubResource("AtlasTexture_ayu50")

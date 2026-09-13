@@ -1,0 +1,199 @@
+[gd_scene format=3 uid="uid://c62rie0nv6qfr"]
+
+[ext_resource type="Script" uid="uid://boambqcmelgyk" path="res://srcs/scenes/player/player.gd" id="1_0eb4x"]
+[ext_resource type="Texture2D" uid="uid://00pkuhl27bsn" path="res://srcs/assets/dinoCharactersVersion1.1/sheets/DinoSprites - doux.png" id="1_qw57e"]
+[ext_resource type="Script" uid="uid://x6hnwruaf1yf" path="res://srcs/scenes/player/rotation_origin.gd" id="3_1y7mq"]
+[ext_resource type="PackedScene" uid="uid://31eelvfioh3i" path="res://srcs/scenes/bullet/bullet.tscn" id="4_u7ac3"]
+[ext_resource type="Texture2D" uid="uid://remjsspbu7gm" path="res://srcs/assets/gun/gun.png" id="5_u7ac3"]
+[ext_resource type="Texture2D" uid="uid://b70mtbdylh1rf" path="res://srcs/assets/basic life bars a icons .png" id="6_fxlsv"]
+[ext_resource type="Script" uid="uid://cd8hm1wmoybu4" path="res://srcs/scenes/player/ammo_bar.gd" id="7_8vrg3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kln86"]
+size = Vector2(9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0eb4x"]
+atlas = ExtResource("1_qw57e")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ki45m"]
+atlas = ExtResource("1_qw57e")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1y7mq"]
+atlas = ExtResource("1_qw57e")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qs78h"]
+atlas = ExtResource("1_qw57e")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ydvo"]
+atlas = ExtResource("1_qw57e")
+region = Rect2(144, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycllh"]
+atlas = ExtResource("1_qw57e")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1pbi"]
+atlas = ExtResource("1_qw57e")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lpvt1"]
+atlas = ExtResource("1_qw57e")
+region = Rect2(144, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5viy"]
+atlas = ExtResource("1_qw57e")
+region = Rect2(168, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_den64"]
+atlas = ExtResource("1_qw57e")
+region = Rect2(192, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sxmu3"]
+atlas = ExtResource("1_qw57e")
+region = Rect2(216, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67uqk"]
+atlas = ExtResource("1_qw57e")
+region = Rect2(240, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qw57e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0eb4x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ki45m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1y7mq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qs78h")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ydvo")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ycllh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1pbi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lpvt1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5viy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_den64")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sxmu3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67uqk")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 8.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vrg3"]
+atlas = ExtResource("6_fxlsv")
+region = Rect2(65, 21, 47, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxlsv"]
+atlas = ExtResource("6_fxlsv")
+region = Rect2(147, 24, 3, 5)
+
+[node name="Player" type="CharacterBody2D" unique_id=2001072719]
+texture_filter = 1
+scale = Vector2(2, 2)
+script = ExtResource("1_0eb4x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1884830159]
+position = Vector2(0.5, 4.5)
+shape = SubResource("RectangleShape2D_kln86")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=560731035]
+sprite_frames = SubResource("SpriteFrames_qw57e")
+animation = &"jump"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=26101225]
+limit_left = 0
+limit_top = 0
+limit_bottom = 480
+
+[node name="RotationOrigin" type="Marker2D" parent="." unique_id=1536539519]
+script = ExtResource("3_1y7mq")
+bullet_scene = ExtResource("4_u7ac3")
+
+[node name="RayCast2D" type="RayCast2D" parent="RotationOrigin" unique_id=1302546569]
+target_position = Vector2(20, 0)
+
+[node name="GunSprite" type="Sprite2D" parent="RotationOrigin/RayCast2D" unique_id=1274303609]
+position = Vector2(-4.5, -4.5)
+texture = ExtResource("5_u7ac3")
+offset = Vector2(9, -1.5)
+
+[node name="BulletSpawnPoint" type="Marker2D" parent="RotationOrigin/RayCast2D/GunSprite" unique_id=914235652]
+position = Vector2(13, 3.5)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=349571977]
+
+[node name="AmmoBar" type="NinePatchRect" parent="CanvasLayer" unique_id=1698374589]
+texture_filter = 1
+offset_left = 5.0
+offset_top = 443.0
+offset_right = 15.0
+offset_bottom = 451.0
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_8vrg3")
+region_rect = Rect2(0, 0, 47, 7)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+script = ExtResource("7_8vrg3")
+
+[node name="AmmoTemplate" type="TextureRect" parent="CanvasLayer/AmmoBar" unique_id=1282524773]
+visible = false
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 4.0
+offset_bottom = 7.0
+texture = SubResource("AtlasTexture_fxlsv")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/AmmoBar" unique_id=854959786]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 1
+theme_override_constants/margin_bottom = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/AmmoBar/MarginContainer" unique_id=903243530]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[connection signal="ammo_count_changed" from="RotationOrigin" to="CanvasLayer/AmmoBar" method="_on_rotation_origin_ammo_count_changed"]

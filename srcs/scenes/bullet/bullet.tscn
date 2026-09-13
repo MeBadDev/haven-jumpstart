@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://31eelvfioh3i"]
+
+[ext_resource type="Script" uid="uid://cbo1rnm7ucri5" path="res://srcs/scenes/bullet/bullet.gd" id="1_4snvi"]
+[ext_resource type="Texture2D" uid="uid://dwt5kt0g6hb1a" path="res://srcs/assets/explosions/boom1.png" id="2_ntqqp"]
+[ext_resource type="Texture2D" uid="uid://b10d3jbvh7k5q" path="res://srcs/assets/explosions/boom2.png" id="3_vgdc8"]
+[ext_resource type="Texture2D" uid="uid://clnalbscjm61t" path="res://srcs/assets/explosions/boom3.png" id="4_i3t7f"]
+[ext_resource type="Texture2D" uid="uid://0xndeagx6im2" path="res://srcs/assets/explosions/boom4.png" id="5_0g4ik"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pb0yl"]
+radius = 3.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4snvi"]
+radius = 50.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pkul1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ntqqp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_vgdc8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_i3t7f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_0g4ik")
+}],
+"loop": false,
+"name": &"explosion",
+"speed": 20.0
+}]
+
+[node name="Bullet" type="CharacterBody2D" unique_id=335925615]
+texture_filter = 1
+script = ExtResource("1_4snvi")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=180667942]
+position = Vector2(4, 0)
+color = Color(0.20784314, 0.20784314, 0.49019608, 1)
+polygon = PackedVector2Array(2, 0, 0, 2, -4, 2, -4, -2, 0, -2)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1038508135]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1588782466]
+position = Vector2(5, 0)
+shape = SubResource("CircleShape2D_pb0yl")
+
+[node name="ExplosionRadius" type="Area2D" parent="." unique_id=1872992455]
+position = Vector2(12, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionRadius" unique_id=1454172489]
+shape = SubResource("CircleShape2D_4snvi")
+debug_color = Color(0.8653214, 0.32666737, 0.38347268, 0.41960785)
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=961542042]
+target_position = Vector2(100, 0)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=164561986]
+visible = false
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_pkul1")
+animation = &"explosion"
+frame = 3
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1966495116]
+position = Vector2(5, 0)
+shape = SubResource("CircleShape2D_pb0yl")
